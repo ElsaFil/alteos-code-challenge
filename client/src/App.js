@@ -12,10 +12,12 @@ export default class App extends Component {
     axios
       .get("/api/contacts")
       .then(result => {
-        console.log("✅" + result);
+        this.setState({
+          contacts: result.data
+        });
       })
       .catch(err => {
-        console.log("❌" + err);
+        console.log(err);
       });
   };
 
@@ -25,6 +27,10 @@ export default class App extends Component {
         <header className="App-header">
           <p>Contacts</p>
         </header>
+        {this.state.contacts &&
+          this.state.contacts.map(contact => {
+            return <ContactCard contact={contact} key={contact._id} />;
+          })}
       </div>
     );
   }

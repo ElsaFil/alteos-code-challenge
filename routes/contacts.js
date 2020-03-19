@@ -3,7 +3,6 @@ const router = express.Router();
 const Contact = require("../models/Contact");
 
 router.get("/contacts", (req, res) => {
-  console.log("🌸");
   Contact.find()
     .then(found => {
       return res.json(found);
