@@ -16,3 +16,15 @@
 .App-link {
   color: #61dafb;
 }
+
+.contact-card {
+  width: 40vw;
+  background-color: linen;
+  border-radius: 10px;
+  padding: 10px 10px 20px 10px;
+  margin: 10px auto;
+}
+
+.separator {
+  width: 10px;
+}
