@@ -6,7 +6,10 @@ import axios from "axios";
 export default class App extends Component {
   state = {
     contacts: [],
-    search: ""
+    filteredContacts: [],
+    search: "",
+    isTyping: false,
+    timer: null
   };
 
   componentDidMount = () => {
@@ -14,7 +17,8 @@ export default class App extends Component {
       .get("/api/contacts")
       .then(result => {
         this.setState({
-          contacts: result.data
+          contacts: result.data,
+          filteredContacts: result.data
         });
       })
       .catch(err => {
@@ -23,8 +27,32 @@ export default class App extends Component {
   };
 
   handleChange = event => {
+    // filter only 2 seconds AFTER user has finished typing
+    // every new input will reset the timer
+    clearTimeout(this.state.timer);
+
+    let value = event.target.value;
+
     this.setState({
-      [event.target.name]: event.target.value
+      isTyping: true,
+      search: value,
+      timer: setTimeout(() => {
+        this.setState({ isTyping: false });
+        this.filterContacts(value);
+      }, 2000)
+    });
+  };
+
+  filterContacts = value => {
+    if (this.state.isTyping) {
+      return;
+    }
+    let searchStr = value.toLowerCase();
+    let filtered = this.state.contacts.filter(contact => {
+      return contact.name?.toLowerCase().includes(searchStr);
+    });
+    this.setState({
+      filteredContacts: filtered
     });
   };
 
@@ -48,8 +76,8 @@ export default class App extends Component {
             />
           </form>
         </header>
-        {this.state.contacts &&
-          this.state.contacts.map(contact => {
+        {this.state.filteredContacts &&
+          this.state.filteredContacts.map(contact => {
             return <ContactCard contact={contact} key={contact._id} />;
           })}
       </div>
