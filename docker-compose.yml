@@ -1,0 +1,18 @@
+version: "3"
+services:
+  backend:
+    build: ./
+    ports:
+      - "5555:5555"
+    depends_on:
+      - db
+    container_name: alteos-contacts-app-backend
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    container_name: alteos-contacts-app-client
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
