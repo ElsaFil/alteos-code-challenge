@@ -1,0 +1,42 @@
+$padding: 10px;
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(12px + 2vmin);
+  color: white;
+}
+
+input {
+  border: none;
+  padding: 4px;
+  border-radius: 6px;
+}
+.contact-card {
+  width: 40vw;
+  background-color: linen;
+  border-radius: 10px;
+  padding: $padding $padding 20px $padding;
+  margin: $padding auto;
+}
+.separator {
+  width: 10px;
+}
+.title {
+  font-weight: 400;
+}
+.general-info .value {
+  font-style: italic;
+  color: gray;
+}
+.contact-info .value {
+  color: steelblue;
+}

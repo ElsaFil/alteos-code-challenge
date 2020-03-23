@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import ContactCard from "./components/ContactCard";
 import axios from "axios";
 

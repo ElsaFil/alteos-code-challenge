@@ -20,9 +20,7 @@ router.post("/contacts", (req, res) => {
       if (found.length === 0) {
         Contact.insertMany(data)
           .then(createdContacts => {
-            return createdContacts.forEach(contact =>
-              console.log(contact.name)
-            );
+            return res.json(createdContacts);
           })
           .catch(err => {
             console.log(err);
