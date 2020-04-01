@@ -13,7 +13,11 @@ export default class App extends Component {
   };
 
   componentDidMount = () => {
-    axios
+    const server = axios.create({
+      baseURL: process.env.REACT_APP_BASE_URL
+    });
+
+    server
       .get("/api/contacts")
       .then(result => {
         this.setState({
