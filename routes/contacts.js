@@ -25,6 +25,8 @@ router.post("/contacts", (req, res) => {
           .catch(err => {
             console.log(err);
           });
+      } else {
+        return res.json("db already populated");
       }
     })
     .catch(err => {

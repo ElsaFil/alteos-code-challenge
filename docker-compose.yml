@@ -7,6 +7,8 @@ services:
     depends_on:
       - db
     container_name: alteos-contacts-app-backend
+    environment:
+      - MONGODB_URI=mongodb://db:27017/alteos-contacts-app
   client:
     build: ./client
     ports:
