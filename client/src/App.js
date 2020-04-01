@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.scss";
 import ContactCard from "./components/ContactCard";
+import Spinner from "./components/Spinner";
 import axios from "axios";
 
 export default class App extends Component {
@@ -9,7 +10,8 @@ export default class App extends Component {
     filteredContacts: [],
     search: "",
     isTyping: false,
-    timer: null
+    timer: null,
+    waiting: false
   };
 
   componentDidMount = () => {
@@ -38,6 +40,7 @@ export default class App extends Component {
     let value = event.target.value;
 
     this.setState({
+      waiting: true,
       isTyping: true,
       search: value,
       timer: setTimeout(() => {
@@ -56,7 +59,8 @@ export default class App extends Component {
       return contact.name?.toLowerCase().includes(searchStr);
     });
     this.setState({
-      filteredContacts: filtered
+      filteredContacts: filtered,
+      waiting: false
     });
   };
 
@@ -69,6 +73,7 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>Contacts</p>
+          <Spinner waiting={this.state.waiting} />
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"

@@ -13,6 +13,7 @@ $padding: 10px;
   justify-content: center;
   font-size: calc(12px + 2vmin);
   color: white;
+  padding: 10px;
 }
 
 input {
@@ -39,4 +40,17 @@ input {
 }
 .contact-info .value {
   color: steelblue;
+}
+
+.spinner-container {
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+.spinner {
+  width: 25px;
+  height: 25px;
 }
